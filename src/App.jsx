@@ -14,12 +14,14 @@ import TechnologySpaceport from "./pages/tech/technology-spaceport";
 import TechnologyVehicle from "./pages/tech/technology-vehicle";
 
 import HomePage from "./components/HomePage";
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <Router>
-      <HomePage />
+      <Navbar></Navbar>
       <Routes>
+        <Route path="/HomePage" element={<HomePage />} />
         <Route path="/crew-commander" element={<CrewCommander />}></Route>
         <Route path="/crew-engineer" element={<CrewEngineer />}></Route>
         <Route path="/crew-pilot" element={<CrewPilot />}></Route>
