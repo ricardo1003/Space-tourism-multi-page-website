@@ -1,7 +1,7 @@
 export default function DestinationMoon
 () {
   return (
-<body>
+<div>
 
   00 Home
   01 Destination
@@ -26,5 +26,5 @@ export default function DestinationMoon
 
   Est. travel time
   3 days
-</body>
+</div>
 )}

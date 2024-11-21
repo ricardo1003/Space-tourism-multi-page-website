@@ -14,38 +14,73 @@ import TechnologySpaceport from "./pages/tech/technology-spaceport";
 import TechnologyVehicle from "./pages/tech/technology-vehicle";
 
 import HomePage from "./components/HomePage";
-import Navbar from './components/Navbar'
+import Navbar from "./components/Navbar";
 
 function App() {
+  const [currentBg, newBg] = useState(
+    "/assets/home/background-home-desktop.jpg"
+  );
+  const changeBg = (input) => {
+    newBg(input);
+  };
+
+  const [indicatorStatus, toggleIndicator] = useState([
+    true,
+    false,
+    false,
+    false,
+  ]);
+
   return (
     <Router>
-      <Navbar></Navbar>
-      <Routes>
-        <Route path="/HomePage" element={<HomePage />} />
-        <Route path="/crew-commander" element={<CrewCommander />}></Route>
-        <Route path="/crew-engineer" element={<CrewEngineer />}></Route>
-        <Route path="/crew-pilot" element={<CrewPilot />}></Route>
-        <Route path="/crew-specialist" element={<CrewSpecialist />}></Route>
-        <Route
-          path="/destination-europa"
-          element={<DestinationEuropa />}
-        ></Route>
-        <Route path="/destination-mars" element={<DestinationMars />}></Route>
-        <Route path="/destination-moon" element={<DestinationMoon />}></Route>
-        <Route path="/destination-titan" element={<DestinationTitan />}></Route>
-        <Route
-          path="/technology-capsule"
-          element={<TechnologyCapsule />}
-        ></Route>
-        <Route
-          path="/technology-spaceport"
-          element={<TechnologySpaceport />}
-        ></Route>
-        <Route
-          path="/technology-vehicle"
-          element={<TechnologyVehicle />}
-        ></Route>
-      </Routes>
+      <body
+        className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col justify-between`}
+        style={{ backgroundImage: `url(${currentBg})` }}
+      >
+        <Navbar
+          changeBg={changeBg}
+          indicatorStatus={indicatorStatus}
+          toggleIndicator={toggleIndicator}
+        ></Navbar>
+        <Routes>
+          <Route
+            path="/HomePage"
+            element={
+              <HomePage
+                indicatorStatus={indicatorStatus}
+                toggleIndicator={toggleIndicator}
+                changeBg={changeBg}
+              />
+            }
+          />
+          <Route path="/crew-commander" element={<CrewCommander />}></Route>
+          <Route path="/crew-engineer" element={<CrewEngineer />}></Route>
+          <Route path="/crew-pilot" element={<CrewPilot />}></Route>
+          <Route path="/crew-specialist" element={<CrewSpecialist />}></Route>
+          <Route
+            path="/destination-europa"
+            element={<DestinationEuropa />}
+          ></Route>
+          <Route path="/destination-mars" element={<DestinationMars />}></Route>
+          <Route path="/destination-moon" element={<DestinationMoon />}></Route>
+          <Route
+            path="/destination-titan"
+            element={<DestinationTitan />}
+          ></Route>
+          <Route
+            path="/technology-capsule"
+            element={<TechnologyCapsule />}
+          ></Route>
+          <Route
+            path="/technology-spaceport"
+            element={<TechnologySpaceport />}
+          ></Route>
+          <Route
+            path="/technology-vehicle"
+            element={<TechnologyVehicle />}
+          ></Route>
+        </Routes>
+      </body>
     </Router>
   );
 }

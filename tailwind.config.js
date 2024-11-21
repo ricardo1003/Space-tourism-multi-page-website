@@ -4,6 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    "bg-[url('/assets/home/background-home-desktop.jpg')]",
+    "bg-[url('/assets/destination/background-destination-desktop.jpg')]",
+  ],
   theme: {
     fontFamily:{
       "Barlow": ["Barlow Condensed",],
