@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>
       <body
-        className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col justify-between`}
+        className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] `}
         style={{ backgroundImage: `url(${currentBg})` }}
       >
         <Navbar

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
 
   return (
-    <header className="h-[96px] flex items-center mt-[40px]">
+    <header className="min-h-[96px] flex items-center mt-[40px]">
       <img
         src="/assets/shared/logo.svg"
         alt="logo"
@@ -26,6 +26,7 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
                   indicatorArray[i] = false
                 });
                 indicatorArray[0] = true;
+                console.log(indicatorArray)
                 toggleIndicator(indicatorArray);
               }}
             >
@@ -48,6 +49,7 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
                   indicatorArray[i] = false
                 });
                 indicatorArray[1] = true;
+                console.log(indicatorArray)
                 toggleIndicator(indicatorArray);
               }}
             >
@@ -67,6 +69,7 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
                   indicatorArray[i] = false
                 });
                 indicatorArray[2] = true;
+                console.log(indicatorArray)
                 toggleIndicator(indicatorArray);
               }}
             >
@@ -88,6 +91,7 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
                   indicatorArray[i] = false
                 });
                 indicatorArray[3] = true;
+                console.log(indicatorArray)
                 toggleIndicator(indicatorArray);
               }}
             >
