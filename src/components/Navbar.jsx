@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
-
   return (
     <header className="min-h-[96px] flex items-center mt-[40px]">
       <img
@@ -21,13 +20,6 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
               onClick={() => {
                 changeBg("/assets/home/background-home-desktop.jpg");
-                const indicatorArray = indicatorStatus;
-                indicatorArray.map((indicator, i) => {
-                  indicatorArray[i] = false
-                });
-                indicatorArray[0] = true;
-                console.log(indicatorArray)
-                toggleIndicator(indicatorArray);
               }}
             >
               <b>00</b> HOME
@@ -35,22 +27,15 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
           </li>
           <li>
             <Link
-              to="/destination-moon"
+              to="/destination"
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[1] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
               onClick={() => {
-                console.log("hola")
+                console.log("hola");
                 changeBg(
                   "/assets/destination/background-destination-desktop.jpg"
                 );
-                const indicatorArray = indicatorStatus;
-                indicatorArray.map((indicator, i) => {
-                  indicatorArray[i] = false
-                });
-                indicatorArray[1] = true;
-                console.log(indicatorArray)
-                toggleIndicator(indicatorArray);
               }}
             >
               <b>01</b> DESTINATION
@@ -64,13 +49,6 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
               onClick={() => {
                 changeBg("/assets/crew/background-crew-desktop.jpg");
-                const indicatorArray = indicatorStatus;
-                indicatorArray.map((indicator, i) => {
-                  indicatorArray[i] = false
-                });
-                indicatorArray[2] = true;
-                console.log(indicatorArray)
-                toggleIndicator(indicatorArray);
               }}
             >
               <b>02</b> CREW
@@ -86,13 +64,6 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
                 changeBg(
                   "/assets/technology/background-technology-desktop.jpg"
                 );
-                const indicatorArray = indicatorStatus;
-                indicatorArray.map((indicator, i) => {
-                  indicatorArray[i] = false
-                });
-                indicatorArray[3] = true;
-                console.log(indicatorArray)
-                toggleIndicator(indicatorArray);
               }}
             >
               <b>03</b> TECHNOLOGY

@@ -1,19 +1,11 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-{
-  /* <nav>
-  <Link to="/crew-engineer">2 </Link>
-  <Link to="/crew-pilot">3 </Link>
-  <Link to="/crew-specialist">4 </Link>
-  <Link to="/destination-europa">5 </Link>
-  <Link to="/destination-mars">6 </Link>
-  <Link to="/destination-titan">8 </Link>
-  <Link to="/technology-capsule">9 </Link>
-  <Link to="/technology-spaceport">10 </Link>
-</nav>  */
-}
 
-export default function HomePage({ indicatorStatus, toggleIndicator, changeBg }) {
+export default function HomePage({
+  indicatorStatus,
+  toggleIndicator,
+  changeBg,
+}) {
   const navigate = useNavigate();
   return (
     <main className="flex justify-between mx-[165px] my-[128px] gap-[298px]">
@@ -40,7 +32,7 @@ export default function HomePage({ indicatorStatus, toggleIndicator, changeBg })
           });
           indicatorArray[1] = true;
           toggleIndicator(indicatorArray);
-          navigate("/destination-moon");
+          navigate("/destination/moon");
         }}
       >
         EXPLORE
