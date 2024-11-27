@@ -43,7 +43,7 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
           </li>
           <li>
             <Link
-              to="/crew-commander"
+              to="/crew"
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[2] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}

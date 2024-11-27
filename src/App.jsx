@@ -11,7 +11,8 @@ import "./App.css";
 
 import data from "./data.json";
 
-import CrewCommander from "./pages/crew/crew";
+import Crew from "./pages/crew/crew";
+
 import CrewEngineer from "./pages/crew/crew-engineer";
 import CrewPilot from "./pages/crew/crew-pilot";
 import CrewSpecialist from "./pages/crew/crew-specialist";
@@ -31,9 +32,6 @@ function App() {
   );
   const location = useLocation();
 
-  const changeBg = (input) => {
-    console.log(input);
-  };
   const [indicatorStatus, toggleIndicator] = useState([
     true,
     false,
@@ -75,13 +73,14 @@ function App() {
     }
   }, [location.pathname]);
 
+  const cleanPath = (path) => path.replace(/^\./, "");
+
   return (
     <body
       className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] `}
       style={{ backgroundImage: `url(${currentBg})` }}
     >
       <Navbar
-        changeBg={changeBg}
         indicatorStatus={indicatorStatus}
         toggleIndicator={toggleIndicator}
       />
@@ -92,25 +91,31 @@ function App() {
             <HomePage
               indicatorStatus={indicatorStatus}
               toggleIndicator={toggleIndicator}
-              changeBg={changeBg}
             />
           }
         />
-        <Route path="/crew-commander" element={<CrewCommander />}></Route>
-        <Route path="/crew-engineer" element={<CrewEngineer />}></Route>
-        <Route path="/crew-pilot" element={<CrewPilot />}></Route>
-        <Route path="/crew-specialist" element={<CrewSpecialist />}></Route>
+        <Route path="/crew" element={<CrewLayout />}>
+          {data.crew.map((crew) => (
+            <Route
+              key={crew.role}
+              path={crew.role.toLocaleLowerCase()}
+              element={<Crew crew={crew} cleanPath={cleanPath} />}
+            ></Route>
+          ))}
+          <Route index element={<Navigate to="./commander" replace />} />
+        </Route>
 
         <Route path="/destination" element={<DestinationLayout />}>
           {data.destinations.map((destination) => (
             <Route
               key={destination.name}
               path={destination.name.toLocaleLowerCase()}
-              element={<Destination destination={destination} />}
+              element={<Destination destination={destination} cleanPath={cleanPath} />}
             ></Route>
           ))}
           <Route index element={<Navigate to="./moon" replace />} />
         </Route>
+
         <Route index element={<Navigate to="Homepage" replace />} />
         <Route
           path="/technology-capsule"
@@ -132,6 +137,13 @@ function App() {
 export default App;
 
 function DestinationLayout() {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+}
+function CrewLayout() {
   return (
     <>
       <Outlet />

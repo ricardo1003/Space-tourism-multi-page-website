@@ -2,8 +2,7 @@ import data from "../../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function DestinationLayout({ destination }) {
-  const cleanPath = (path) => path.replace(/^\./, "");
+export default function DestinationLayout({ destination, cleanPath }) {
 
   const location = useLocation();
 
