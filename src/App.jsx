@@ -11,7 +11,7 @@ import "./App.css";
 
 import data from "./data.json";
 
-import CrewCommander from "./pages/crew/crew-commander";
+import CrewCommander from "./pages/crew/crew";
 import CrewEngineer from "./pages/crew/crew-engineer";
 import CrewPilot from "./pages/crew/crew-pilot";
 import CrewSpecialist from "./pages/crew/crew-specialist";
