@@ -13,15 +13,11 @@ import data from "./data.json";
 
 import Crew from "./pages/crew/crew";
 
-import CrewEngineer from "./pages/crew/crew-engineer";
-import CrewPilot from "./pages/crew/crew-pilot";
-import CrewSpecialist from "./pages/crew/crew-specialist";
-
 import Destination from "./pages/destination/Destination";
 
 import TechnologyCapsule from "./pages/tech/technology-capsule";
 import TechnologySpaceport from "./pages/tech/technology-spaceport";
-import TechnologyVehicle from "./pages/tech/technology-vehicle";
+import Technology from "./pages/tech/technology";
 
 import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
@@ -127,7 +123,7 @@ function App() {
         ></Route>
         <Route
           path="/technology-vehicle"
-          element={<TechnologyVehicle />}
+          element={<Technology />}
         ></Route>
       </Routes>
     </body>

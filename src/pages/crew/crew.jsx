@@ -18,7 +18,6 @@ export default function CrewCommander({ crew, cleanPath }) {
     let indicatorArray = [];
     const newIndicatorStatus = data.crew.map((member, i) => {
       indicatorArray[i] = path.replace(/%20/g, ' ').endsWith(member.role.toLowerCase());
-      console.log(path.replace(/%20/g, ' '))
     });
 
     toggleIndicator(indicatorArray);
