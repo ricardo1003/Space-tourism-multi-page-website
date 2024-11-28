@@ -1,4 +1,29 @@
-export default function TechnologyVehicle() {
+import data from "../../data.json";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+export default function TechnologyVehicle({ tech, cleanPath }) {
+  const location = useLocation();
+
+  const [indicatorStatus, toggleIndicator] = useState([
+    true,
+    false,
+    false,
+    false,
+  ]);
+  useEffect(() => {
+    const path = location.pathname.toLowerCase();
+
+    let indicatorArray = [];
+    const newIndicatorStatus = data.technology.map((tech, i) => {
+      indicatorArray[i] = path
+        .replace(/%20/g, " ")
+        .endsWith(tech.name.toLowerCase());
+    });
+
+    toggleIndicator(indicatorArray);
+  }, [location.pathname]);
+
   return (
     <main className="flex items-center justify-center flex-col w-full pl-[165px] max-h-[100vh] overflow-hidden">
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
@@ -8,38 +33,35 @@ export default function TechnologyVehicle() {
         <div className="flex max-w-[635px] gap-16">
           <nav>
             <ol className="flex flex-col justify-between h-full">
-              <li className="border-solid border-2 border-white bg-white text-black rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]">
-                1
-              </li>
-              <li className="border-solid border-2 border-white/25 rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]">
-                2
-              </li>
-              <li className="border-solid border-2 border-white/25 rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]">
-                3
-              </li>
+              {data.technology.map((tech, i) => (
+                <li key={tech.name}>
+                  <Link
+                    to={`/technology/${tech.name}`}
+                    className={`border-solid border-2 ${
+                      indicatorStatus[i]
+                        ? "border-white bg-white text-black"
+                        : "border-white/25"} rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]`}
+                  >
+                    {i+1}
+                  </Link>
+                </li>
+              ))}
             </ol>
           </nav>
           <div>
             <h2 className="flex flex-col uppercase font-Bellefair text-[56px] gap-0">
-              <span className="text-[hsla(0,0%,100%,0.5042)] text-[32px]">
+              <span className="text-[hsla(0,0%,100%,0.5042)] text-[32px] uppercase">
                 the terminology...
-              </span>{" "}
-              launch vehicle
+              </span>
+              {tech.name}
             </h2>
             <p className="font-Barlow text-[18px] leading-[1.8em] text-Blue-300 ">
-              A launch vehicle or carrier rocket is a rocket-propelled vehicle
-              used to carry a payload from Earth's surface to space, usually to
-              Earth orbit or beyond. Our WEB-X carrier rocket is the most
-              powerful in operation. Standing 150 metres tall, it's quite an
-              awe-inspiring sight on the launch pad!
+              {tech.description}
             </p>
           </div>
         </div>
-        <picture >
-          <img
-            src="/assets/technology/image-launch-vehicle-portrait.jpg"
-            alt="LaunchVehicle"
-          />
+        <picture>
+          <img src={cleanPath(tech.images.portrait)} alt={tech.name} />
         </picture>
       </section>
       {/* 00 Home

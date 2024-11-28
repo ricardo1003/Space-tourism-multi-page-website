@@ -24,7 +24,6 @@ export default function HomePage({
       <button
         className="bg-white rounded-full h-[272px] aspect-square text-black flex items-center justify-center font-Bellefair text-[32px]"
         onClick={() => {
-          console.log("hola");
           changeBg("/assets/destination/background-destination-desktop.jpg");
           const indicatorArray = indicatorStatus;
           indicatorArray.map((indicator, i) => {

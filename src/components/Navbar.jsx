@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
+export default function Navbar({ indicatorStatus, toggleIndicator }) {
   return (
     <header className="min-h-[96px] flex items-center mt-[40px]">
       <img
@@ -18,9 +18,6 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[0] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
-              onClick={() => {
-                changeBg("/assets/home/background-home-desktop.jpg");
-              }}
             >
               <b>00</b> HOME
             </Link>
@@ -31,12 +28,6 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[1] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
-              onClick={() => {
-                console.log("hola");
-                changeBg(
-                  "/assets/destination/background-destination-desktop.jpg"
-                );
-              }}
             >
               <b>01</b> DESTINATION
             </Link>
@@ -47,24 +38,16 @@ export default function Navbar({ changeBg, indicatorStatus, toggleIndicator }) {
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[2] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
-              onClick={() => {
-                changeBg("/assets/crew/background-crew-desktop.jpg");
-              }}
             >
               <b>02</b> CREW
             </Link>
           </li>
           <li>
             <Link
-              to="/technology-vehicle"
+              to="/technology/launch%20vehicle"
               className={`flex flex-row relative gap-3 before:${
                 indicatorStatus[3] ? "block" : "hidden"
               } before:h-1 before:bg-white before:absolute before:bottom-[-35px] before:w-full`}
-              onClick={() => {
-                changeBg(
-                  "/assets/technology/background-technology-desktop.jpg"
-                );
-              }}
             >
               <b>03</b> TECHNOLOGY
             </Link>

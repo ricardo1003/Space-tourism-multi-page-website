@@ -22,7 +22,6 @@ export default function DestinationLayout({ destination, cleanPath }) {
     });
 
     toggleIndicator(indicatorArray);
-    console.log(indicatorStatus);
   }, [location.pathname]);
   return (
     <main className="flex items-center justify-center flex-col w-full px-[165px] max-h-full">

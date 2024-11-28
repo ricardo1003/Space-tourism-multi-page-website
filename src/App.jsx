@@ -12,11 +12,7 @@ import "./App.css";
 import data from "./data.json";
 
 import Crew from "./pages/crew/crew";
-
 import Destination from "./pages/destination/Destination";
-
-import TechnologyCapsule from "./pages/tech/technology-capsule";
-import TechnologySpaceport from "./pages/tech/technology-spaceport";
 import Technology from "./pages/tech/technology";
 
 import HomePage from "./components/HomePage";
@@ -81,6 +77,7 @@ function App() {
         toggleIndicator={toggleIndicator}
       />
       <Routes>
+        <Route index element={<Navigate to="Homepage" replace />} />
         <Route
           path="/HomePage"
           element={
@@ -90,6 +87,20 @@ function App() {
             />
           }
         />
+
+        <Route path="/destination" element={<DestinationLayout />}>
+          {data.destinations.map((destination) => (
+            <Route
+              key={destination.name}
+              path={destination.name.toLocaleLowerCase()}
+              element={
+                <Destination destination={destination} cleanPath={cleanPath} />
+              }
+            ></Route>
+          ))}
+          <Route index element={<Navigate to="./moon" replace />} />
+        </Route>
+
         <Route path="/crew" element={<CrewLayout />}>
           {data.crew.map((crew) => (
             <Route
@@ -101,30 +112,16 @@ function App() {
           <Route index element={<Navigate to="./commander" replace />} />
         </Route>
 
-        <Route path="/destination" element={<DestinationLayout />}>
-          {data.destinations.map((destination) => (
+        <Route path="/technology" element={<TechnologyLayout />}>
+          {data.technology.map((tech) => (
             <Route
-              key={destination.name}
-              path={destination.name.toLocaleLowerCase()}
-              element={<Destination destination={destination} cleanPath={cleanPath} />}
+              key={tech.name}
+              path={tech.name.toLocaleLowerCase()}
+              element={<Technology tech={tech} cleanPath={cleanPath} />}
             ></Route>
           ))}
-          <Route index element={<Navigate to="./moon" replace />} />
+          <Route index element={<Navigate to="./launch%20vehicle" replace />} />
         </Route>
-
-        <Route index element={<Navigate to="Homepage" replace />} />
-        <Route
-          path="/technology-capsule"
-          element={<TechnologyCapsule />}
-        ></Route>
-        <Route
-          path="/technology-spaceport"
-          element={<TechnologySpaceport />}
-        ></Route>
-        <Route
-          path="/technology-vehicle"
-          element={<Technology />}
-        ></Route>
       </Routes>
     </body>
   );
@@ -140,6 +137,13 @@ function DestinationLayout() {
   );
 }
 function CrewLayout() {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+}
+function TechnologyLayout() {
   return (
     <>
       <Outlet />
