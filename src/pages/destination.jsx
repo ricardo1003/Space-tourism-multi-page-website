@@ -1,28 +1,20 @@
-import data from "../../data.json";
+import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function DestinationLayout({ destination, cleanPath }) {
-
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([
-    true,
-    false,
-    false,
-    false,
-  ]);
+  const [indicatorStatus, toggleIndicator] = useState([true,false,false,false])
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
-    let indicatorArray = [];
-    const newIndicatorStatus = data.destinations.map((dest, i) => {
-      indicatorArray[i] = path.endsWith(dest.name.toLowerCase());
-    });
+    const newIndicatorStatus = data.destinations.map((dest, i) =>
+      path.endsWith(dest.name.toLowerCase()));
 
-    toggleIndicator(indicatorArray);
-  }, [location.pathname]);
+    toggleIndicator(newIndicatorStatus);
+  }, [location.pathname, data.destinations]);
   return (
     <main className="flex items-center justify-center flex-col w-full px-[165px] max-h-full">
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
@@ -44,10 +36,11 @@ export default function DestinationLayout({ destination, cleanPath }) {
                 <li className="relative" key={dest.name}>
                   <Link
                     to={`/destination/${dest.name.toLowerCase()}`}
-                    className={` before:${
-                      indicatorStatus[i] ? "block text-white" : "hidden"
+                    className={`${
+                      indicatorStatus[i] ? "before:block text-white" : "before:hidden"
                     } before:bg-white before:w-full before:h-[3px] before:absolute before:bottom-[-10px]`}
                   >
+                    {console.log(indicatorStatus)}
                     {dest.name.toUpperCase()}
                   </Link>
                 </li>

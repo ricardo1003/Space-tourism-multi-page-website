@@ -1,4 +1,4 @@
-import data from "../../data.json";
+import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -6,21 +6,14 @@ export default function CrewCommander({ crew, cleanPath }) {
 
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([
-    true,
-    false,
-    false,
-    false,
-  ]);
+  const [indicatorStatus, toggleIndicator] = useState([true,false,false,false])
+
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
-    let indicatorArray = [];
-    const newIndicatorStatus = data.crew.map((member, i) => {
-      indicatorArray[i] = path.replace(/%20/g, ' ').endsWith(member.role.toLowerCase());
-    });
-
-    toggleIndicator(indicatorArray);
+    const newIndicatorStatus = data.crew.map((member, i) => 
+      path.replace(/%20/g, " ").endsWith(member.role.toLowerCase()));
+    toggleIndicator(newIndicatorStatus);
   }, [location.pathname]);
 
   return (
@@ -47,7 +40,7 @@ export default function CrewCommander({ crew, cleanPath }) {
                 <li key={member.name}>
                   <Link
                     to={`/crew/${member.role}`}
-                    className={`block size-[15px] bg-[rgba(255,255,255,${indicatorStatus[i] ? "1" : "0.1744"})] rounded-full`}
+                    className={`block size-[15px] ${indicatorStatus[i] ? "bg-[rgba(255,255,255,1)]" : "bg-[rgba(255,255,255,0.1744)]"} rounded-full`}
                   ></Link>
                 </li>
               ))}

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function HomePage({
   indicatorStatus,
   toggleIndicator,
-  changeBg,
 }) {
   const navigate = useNavigate();
   return (
@@ -24,7 +23,6 @@ export default function HomePage({
       <button
         className="bg-white rounded-full h-[272px] aspect-square text-black flex items-center justify-center font-Bellefair text-[32px]"
         onClick={() => {
-          changeBg("/assets/destination/background-destination-desktop.jpg");
           const indicatorArray = indicatorStatus;
           indicatorArray.map((indicator, i) => {
             indicatorArray[i] = false;

@@ -1,31 +1,24 @@
-import data from "../../data.json";
+import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function TechnologyVehicle({ tech, cleanPath }) {
+
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([
-    true,
-    false,
-    false,
-    false,
-  ]);
+  const [indicatorStatus, toggleIndicator] = useState([true,false,false])
+
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
-    let indicatorArray = [];
-    const newIndicatorStatus = data.technology.map((tech, i) => {
-      indicatorArray[i] = path
-        .replace(/%20/g, " ")
-        .endsWith(tech.name.toLowerCase());
-    });
+    const newIndicatorStatus = data.technology.map((tech, i) =>
+      path.replace(/%20/g, " ").endsWith(tech.name.toLowerCase()));
 
-    toggleIndicator(indicatorArray);
+    toggleIndicator(newIndicatorStatus);
   }, [location.pathname]);
 
   return (
-    <main className="flex items-center justify-center flex-col w-full pl-[165px] max-h-[100vh] overflow-hidden">
+    <main className="flex items-center justify-center flex-col w-full pl-[165px] pb-[115px] max-h-[100vh] overflow-hidden">
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
         <b className="tracking-[4.72px] text-white/25">03</b> SPACE LAUNCH 101
       </h1>
@@ -40,9 +33,10 @@ export default function TechnologyVehicle({ tech, cleanPath }) {
                     className={`border-solid border-2 ${
                       indicatorStatus[i]
                         ? "border-white bg-white text-black"
-                        : "border-white/25"} rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]`}
+                        : "border-white/25"
+                    } rounded-full size-[80px] flex items-center justify-center font-Bellefair text-[32px]`}
                   >
-                    {i+1}
+                    {i + 1}
                   </Link>
                 </li>
               ))}
@@ -64,21 +58,6 @@ export default function TechnologyVehicle({ tech, cleanPath }) {
           <img src={cleanPath(tech.images.portrait)} alt={tech.name} />
         </picture>
       </section>
-      {/* 00 Home
-  01 Destination
-  02 Crew
-  03 Technology
-
-  03 Space launch 101
-
-  1
-  2
-  3
-
-  The terminology...
-  Launch vehicle
-
-   */}
     </main>
   );
 }

@@ -11,9 +11,9 @@ import "./App.css";
 
 import data from "./data.json";
 
-import Crew from "./pages/crew/crew";
-import Destination from "./pages/destination/Destination";
-import Technology from "./pages/tech/technology";
+import Crew from "./pages/crew";
+import Destination from "./pages/destination";
+import Technology from "./pages/technology";
 
 import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
@@ -33,36 +33,23 @@ function App() {
   useEffect(() => {
     const path = location.pathname;
 
+    const newIndicatorArray = [false, false, false, false];
+
     if (path.startsWith("/destination")) {
       newBg("/assets/destination/background-destination-desktop.jpg");
-      const indicatorArray = indicatorStatus;
-      indicatorArray.map((indicator, i) => {
-        indicatorArray[i] = false;
-      });
-      indicatorArray[1] = true;
-      toggleIndicator(indicatorArray);
+      newIndicatorArray[1] = true;
     } else if (path.startsWith("/crew")) {
       newBg("/assets/crew/background-crew-desktop.jpg");
-      const indicatorArray = indicatorStatus;
-      indicatorArray.map((indicator, i) => {
-        indicatorArray[i] = false;
-      });
-      indicatorArray[2] = true;
+      newIndicatorArray[2] = true;
     } else if (path.startsWith("/technology")) {
       newBg("/assets/technology/background-technology-desktop.jpg");
-      const indicatorArray = indicatorStatus;
-      indicatorArray.map((indicator, i) => {
-        indicatorArray[i] = false;
-      });
-      indicatorArray[3] = true;
+      newIndicatorArray[3] = true;
     } else {
       newBg("/assets/home/background-home-desktop.jpg");
-      const indicatorArray = indicatorStatus;
-      indicatorArray.map((indicator, i) => {
-        indicatorArray[i] = false;
-      });
-      indicatorArray[0] = true;
+      newIndicatorArray[0] = true;
     }
+    console.log(newIndicatorArray);
+    toggleIndicator(newIndicatorArray);
   }, [location.pathname]);
 
   const cleanPath = (path) => path.replace(/^\./, "");
