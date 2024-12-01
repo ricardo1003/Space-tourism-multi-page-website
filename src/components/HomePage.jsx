@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
-export default function HomePage({
-  indicatorStatus,
-  toggleIndicator,
-}) {
+export default function HomePage({ indicatorStatus, toggleIndicator, pageTransitions }) {
   const navigate = useNavigate();
   return (
-    <main className="flex justify-between mx-[165px] my-[128px] gap-[298px]">
+    <motion.main
+      className="flex justify-between mx-[165px] my-[128px] gap-[298px]"
+      initial={{ opacity: pageTransitions.initial }}
+      animate={{ opacity: pageTransitions.animate }}
+      exit={{ opacity: pageTransitions.exit }}
+      transition={{ duration: pageTransitions.transition }}
+    >
       <div>
         <h1 className="flex flex-col font-Barlow text-Blue-300">
           SO, YOU WANT TO TRAVEL TO
@@ -34,6 +38,6 @@ export default function HomePage({
       >
         EXPLORE
       </button>
-    </main>
+    </motion.main>
   );
 }

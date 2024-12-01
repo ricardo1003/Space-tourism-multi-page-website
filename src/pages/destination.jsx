@@ -1,22 +1,35 @@
 import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-export default function DestinationLayout({ destination, cleanPath }) {
+export default function DestinationLayout({ destination, cleanPath, pageTransitions }) {
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([true,false,false,false])
+  const [indicatorStatus, toggleIndicator] = useState([
+    true,
+    false,
+    false,
+    false,
+  ]);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
     const newIndicatorStatus = data.destinations.map((dest, i) =>
-      path.endsWith(dest.name.toLowerCase()));
+      path.endsWith(dest.name.toLowerCase())
+    );
 
     toggleIndicator(newIndicatorStatus);
   }, [location.pathname, data.destinations]);
   return (
-    <main className="flex items-center justify-center flex-col w-full px-[165px] max-h-full">
+    <motion.main
+      className="flex items-center justify-center flex-col w-full px-[165px] max-h-full"
+      initial={{ opacity: pageTransitions.initial }}
+      animate={{ opacity: pageTransitions.animate }}
+      exit={{ opacity: pageTransitions.exit }}
+      transition={{ duration: pageTransitions.transition }}
+    >
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
         <b className="tracking-[4.72px] text-white/25">01</b> PICK YOUR
         DESTINATION
@@ -37,7 +50,9 @@ export default function DestinationLayout({ destination, cleanPath }) {
                   <Link
                     to={`/destination/${dest.name.toLowerCase()}`}
                     className={`${
-                      indicatorStatus[i] ? "before:block text-white" : "before:hidden"
+                      indicatorStatus[i]
+                        ? "before:block text-white"
+                        : "before:hidden"
                     } before:bg-white before:w-full before:h-[3px] before:absolute before:bottom-[-10px]`}
                   >
                     {console.log(indicatorStatus)}
@@ -74,6 +89,6 @@ export default function DestinationLayout({ destination, cleanPath }) {
           </div>
         </section>
       </article>
-    </main>
+    </motion.main>
   );
 }

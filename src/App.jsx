@@ -7,6 +7,7 @@ import {
   useLocation,
   Outlet,
 } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import "./App.css";
 
 import data from "./data.json";
@@ -54,6 +55,13 @@ function App() {
 
   const cleanPath = (path) => path.replace(/^\./, "");
 
+  const pageTransitions = {
+    initial: 0,
+    animate: 1,
+    exit: 0,
+    transition: 0.5,
+  };
+
   return (
     <body
       className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] `}
@@ -63,53 +71,75 @@ function App() {
         indicatorStatus={indicatorStatus}
         toggleIndicator={toggleIndicator}
       />
-      <Routes>
-        <Route index element={<Navigate to="Homepage" replace />} />
-        <Route
-          path="/HomePage"
-          element={
-            <HomePage
-              indicatorStatus={indicatorStatus}
-              toggleIndicator={toggleIndicator}
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route index element={<Navigate to="Homepage" replace />} />
+          <Route
+            path="/HomePage"
+            element={
+              <HomePage
+                indicatorStatus={indicatorStatus}
+                toggleIndicator={toggleIndicator}
+                pageTransitions={pageTransitions}
+              />
+            }
+          />
+
+          <Route path="/destination" element={<DestinationLayout />}>
+            {data.destinations.map((destination) => (
+              <Route
+                key={destination.name}
+                path={destination.name.toLocaleLowerCase()}
+                element={
+                  <Destination
+                    destination={destination}
+                    cleanPath={cleanPath}
+                    pageTransitions={pageTransitions}
+                  />
+                }
+              ></Route>
+            ))}
+            <Route index element={<Navigate to="./moon" replace />} />
+          </Route>
+
+          <Route path="/crew" element={<CrewLayout />}>
+            {data.crew.map((crew) => (
+              <Route
+                key={crew.role}
+                path={crew.role.toLocaleLowerCase()}
+                element={
+                  <Crew
+                    crew={crew}
+                    cleanPath={cleanPath}
+                    pageTransitions={pageTransitions}
+                  />
+                }
+              ></Route>
+            ))}
+            <Route index element={<Navigate to="./commander" replace />} />
+          </Route>
+
+          <Route path="/technology" element={<TechnologyLayout />}>
+            {data.technology.map((tech) => (
+              <Route
+                key={tech.name}
+                path={tech.name.toLocaleLowerCase()}
+                element={
+                  <Technology
+                    tech={tech}
+                    cleanPath={cleanPath}
+                    pageTransitions={pageTransitions}
+                  />
+                }
+              ></Route>
+            ))}
+            <Route
+              index
+              element={<Navigate to="./launch%20vehicle" replace />}
             />
-          }
-        />
-
-        <Route path="/destination" element={<DestinationLayout />}>
-          {data.destinations.map((destination) => (
-            <Route
-              key={destination.name}
-              path={destination.name.toLocaleLowerCase()}
-              element={
-                <Destination destination={destination} cleanPath={cleanPath} />
-              }
-            ></Route>
-          ))}
-          <Route index element={<Navigate to="./moon" replace />} />
-        </Route>
-
-        <Route path="/crew" element={<CrewLayout />}>
-          {data.crew.map((crew) => (
-            <Route
-              key={crew.role}
-              path={crew.role.toLocaleLowerCase()}
-              element={<Crew crew={crew} cleanPath={cleanPath} />}
-            ></Route>
-          ))}
-          <Route index element={<Navigate to="./commander" replace />} />
-        </Route>
-
-        <Route path="/technology" element={<TechnologyLayout />}>
-          {data.technology.map((tech) => (
-            <Route
-              key={tech.name}
-              path={tech.name.toLocaleLowerCase()}
-              element={<Technology tech={tech} cleanPath={cleanPath} />}
-            ></Route>
-          ))}
-          <Route index element={<Navigate to="./launch%20vehicle" replace />} />
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </body>
   );
 }

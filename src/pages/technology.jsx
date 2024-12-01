@@ -1,24 +1,31 @@
 import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-export default function TechnologyVehicle({ tech, cleanPath }) {
-
+export default function TechnologyVehicle({ tech, cleanPath, pageTransitions }) {
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([true,false,false])
+  const [indicatorStatus, toggleIndicator] = useState([true, false, false]);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
     const newIndicatorStatus = data.technology.map((tech, i) =>
-      path.replace(/%20/g, " ").endsWith(tech.name.toLowerCase()));
+      path.replace(/%20/g, " ").endsWith(tech.name.toLowerCase())
+    );
 
     toggleIndicator(newIndicatorStatus);
   }, [location.pathname]);
 
   return (
-    <main className="flex items-center justify-center flex-col w-full pl-[165px] pb-[115px] max-h-[100vh] overflow-hidden">
+    <motion.main
+      className="flex items-center justify-center flex-col w-full pl-[165px] pb-[115px] max-h-[100vh] overflow-hidden"
+      initial={{ opacity: pageTransitions.initial }}
+      animate={{ opacity: pageTransitions.animate }}
+      exit={{ opacity: pageTransitions.exit }}
+      transition={{ duration: pageTransitions.transition }}
+    >
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
         <b className="tracking-[4.72px] text-white/25">03</b> SPACE LAUNCH 101
       </h1>
@@ -58,6 +65,6 @@ export default function TechnologyVehicle({ tech, cleanPath }) {
           <img src={cleanPath(tech.images.portrait)} alt={tech.name} />
         </picture>
       </section>
-    </main>
+    </motion.main>
   );
 }

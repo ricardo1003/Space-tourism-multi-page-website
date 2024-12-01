@@ -1,23 +1,35 @@
 import data from "../data.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-export default function CrewCommander({ crew, cleanPath }) {
-
+export default function CrewCommander({ crew, cleanPath, pageTransitions }) {
   const location = useLocation();
 
-  const [indicatorStatus, toggleIndicator] = useState([true,false,false,false])
+  const [indicatorStatus, toggleIndicator] = useState([
+    true,
+    false,
+    false,
+    false,
+  ]);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
 
-    const newIndicatorStatus = data.crew.map((member, i) => 
-      path.replace(/%20/g, " ").endsWith(member.role.toLowerCase()));
+    const newIndicatorStatus = data.crew.map((member, i) =>
+      path.replace(/%20/g, " ").endsWith(member.role.toLowerCase())
+    );
     toggleIndicator(newIndicatorStatus);
   }, [location.pathname]);
 
   return (
-    <main className="flex items-center justify-center flex-col w-full px-[165px] max-h-[100vh] overflow-hidden">
+    <motion.main
+      className="flex items-center justify-center flex-col w-full px-[165px] max-h-[100vh] overflow-hidden"
+      initial={{ opacity: pageTransitions.initial }}
+      animate={{ opacity: pageTransitions.animate }}
+      exit={{ opacity: pageTransitions.exit }}
+      transition={{ duration: pageTransitions.transition }}
+    >
       <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
         <b className="tracking-[4.72px] text-white/25">02</b> MEET YOUR CREW
       </h1>
@@ -40,7 +52,11 @@ export default function CrewCommander({ crew, cleanPath }) {
                 <li key={member.name}>
                   <Link
                     to={`/crew/${member.role}`}
-                    className={`block size-[15px] ${indicatorStatus[i] ? "bg-[rgba(255,255,255,1)]" : "bg-[rgba(255,255,255,0.1744)]"} rounded-full`}
+                    className={`block size-[15px] ${
+                      indicatorStatus[i]
+                        ? "bg-[rgba(255,255,255,1)]"
+                        : "bg-[rgba(255,255,255,0.1744)]"
+                    } rounded-full`}
                   ></Link>
                 </li>
               ))}
@@ -56,6 +72,6 @@ export default function CrewCommander({ crew, cleanPath }) {
           />
         </picture>
       </section>
-    </main>
+    </motion.main>
   );
 }
