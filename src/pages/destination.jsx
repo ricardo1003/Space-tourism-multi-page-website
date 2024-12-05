@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function DestinationLayout({ destination, cleanPath, pageTransitions }) {
+export default function DestinationLayout({ destination, cleanPath, pageTransitions, isExiting }) {
   const location = useLocation();
 
   const [indicatorStatus, toggleIndicator] = useState([
@@ -26,7 +26,7 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
     <motion.main
       className="flex items-center justify-center flex-col w-full px-[165px] max-h-full"
       initial={{ opacity: pageTransitions.initial }}
-      animate={{ opacity: pageTransitions.animate }}
+      animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
       transition={{ duration: pageTransitions.transition }}
     >
@@ -55,7 +55,6 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
                         : "before:hidden"
                     } before:bg-white before:w-full before:h-[3px] before:absolute before:bottom-[-10px]`}
                   >
-                    {console.log(indicatorStatus)}
                     {dest.name.toUpperCase()}
                   </Link>
                 </li>

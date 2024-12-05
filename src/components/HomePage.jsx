@@ -2,13 +2,21 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function HomePage({ indicatorStatus, toggleIndicator, pageTransitions }) {
+export default function HomePage({
+  indicatorStatus,
+  toggleIndicator,
+  pageTransitions,
+  isExiting,
+  backgrounds,
+  handleBackgroundChange,
+  handleNavigation,
+}) {
   const navigate = useNavigate();
   return (
     <motion.main
       className="flex justify-between mx-[165px] my-[128px] gap-[298px]"
       initial={{ opacity: pageTransitions.initial }}
-      animate={{ opacity: pageTransitions.animate }}
+      animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
       transition={{ duration: pageTransitions.transition }}
     >
@@ -32,8 +40,9 @@ export default function HomePage({ indicatorStatus, toggleIndicator, pageTransit
             indicatorArray[i] = false;
           });
           indicatorArray[1] = true;
+          handleBackgroundChange(backgrounds[1]);
+          handleNavigation("destination/moon")
           toggleIndicator(indicatorArray);
-          navigate("/destination/moon");
         }}
       >
         EXPLORE

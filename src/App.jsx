@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useNavigate,
   useLocation,
   Outlet,
 } from "react-router-dom";
@@ -20,9 +22,13 @@ import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
 
 function App() {
-  const [currentBg, newBg] = useState(
+  const [currentBg, setCurrentBg] = useState(
     "/assets/home/background-home-desktop.jpg"
   );
+  const [nextBg, setNextBg] = useState("");
+  const [isExiting, setIsExiting] = useState(false);
+
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [indicatorStatus, toggleIndicator] = useState([
@@ -31,27 +37,46 @@ function App() {
     false,
     false,
   ]);
+
+  const backgrounds = [
+    "/assets/home/background-home-desktop.jpg",
+    "/assets/destination/background-destination-desktop.jpg",
+    "/assets/crew/background-crew-desktop.jpg",
+    "/assets/technology/background-technology-desktop.jpg",
+  ];
   useEffect(() => {
     const path = location.pathname;
 
     const newIndicatorArray = [false, false, false, false];
 
     if (path.startsWith("/destination")) {
-      newBg("/assets/destination/background-destination-desktop.jpg");
+      setNextBg(backgrounds[1]);
       newIndicatorArray[1] = true;
     } else if (path.startsWith("/crew")) {
-      newBg("/assets/crew/background-crew-desktop.jpg");
+      setNextBg(backgrounds[2]);
       newIndicatorArray[2] = true;
     } else if (path.startsWith("/technology")) {
-      newBg("/assets/technology/background-technology-desktop.jpg");
+      setNextBg(backgrounds[3]);
       newIndicatorArray[3] = true;
     } else {
-      newBg("/assets/home/background-home-desktop.jpg");
+      setNextBg(backgrounds[0]);
       newIndicatorArray[0] = true;
     }
-    console.log(newIndicatorArray);
     toggleIndicator(newIndicatorArray);
   }, [location.pathname]);
+
+  const handleBackgroundChange = (newBg) => {
+    setNextBg(newBg);
+    setTimeout(() => setCurrentBg(newBg), 500);
+  };
+
+  const handleNavigation = (path) => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate(path);
+      setIsExiting(false);
+    }, 500);
+  };
 
   const cleanPath = (path) => path.replace(/^\./, "");
 
@@ -63,13 +88,42 @@ function App() {
   };
 
   return (
-    <body
+    <motion.body
       className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] `}
-      style={{ backgroundImage: `url(${currentBg})` }}
+      style={{ backgroundImage: currentBg }}
+      key={currentBg}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+      transition={{ duration: 0 }}
     >
+      <div
+        className="absolute inset-0 size-full bg-center bg-cover -z-10 "
+        style={{
+          backgroundImage: `url(${currentBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <motion.div
+          key={nextBg}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            backgroundImage: `url(${nextBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "absolute",
+            inset: 0,
+          }}
+        />
+      </div>
       <Navbar
-        indicatorStatus={indicatorStatus}
-        toggleIndicator={toggleIndicator}
+        handleNavigation={handleNavigation}
+        handleBackgroundChange={handleBackgroundChange}
+        backgrounds={backgrounds}
       />
       <AnimatePresence mode="wait">
         <Routes>
@@ -81,6 +135,10 @@ function App() {
                 indicatorStatus={indicatorStatus}
                 toggleIndicator={toggleIndicator}
                 pageTransitions={pageTransitions}
+                isExiting={isExiting}
+                handleBackgroundChange={handleBackgroundChange}
+                backgrounds={backgrounds}
+                handleNavigation={handleNavigation}
               />
             }
           />
@@ -95,6 +153,8 @@ function App() {
                     destination={destination}
                     cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
+                    isExiting={isExiting}
+                    handleBackgroundChange={handleBackgroundChange}
                   />
                 }
               ></Route>
@@ -112,6 +172,8 @@ function App() {
                     crew={crew}
                     cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
+                    isExiting={isExiting}
+                    handleBackgroundChange={handleBackgroundChange}
                   />
                 }
               ></Route>
@@ -129,6 +191,8 @@ function App() {
                     tech={tech}
                     cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
+                    isExiting={isExiting}
+                    handleBackgroundChange={handleBackgroundChange}
                   />
                 }
               ></Route>
@@ -140,7 +204,7 @@ function App() {
           </Route>
         </Routes>
       </AnimatePresence>
-    </body>
+    </motion.body>
   );
 }
 
