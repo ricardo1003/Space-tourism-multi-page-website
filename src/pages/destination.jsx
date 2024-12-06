@@ -24,25 +24,25 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
   }, [location.pathname, data.destinations]);
   return (
     <motion.main
-      className="flex items-center justify-center flex-col w-full px-[165px] max-h-full"
+      className="flex items-center justify-center flex-col w-full px-[165px] max-[769px]:px-[40px] max-[769px]:pb-[40px] max-h-full"
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
       transition={{ duration: pageTransitions.transition }}
     >
-      <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
+      <h1 className="font-Barlow text-[28px] max-[769px]:text-[20px] tracking-[4px] max-[769px]:tracking-[15%] self-start mt-[4vh] mb-[6vh]">
         <b className="tracking-[4.72px] text-white/25">01</b> PICK YOUR
         DESTINATION
       </h1>
-      <article className="flex justify-between items-start gap-[108.5px] w-full">
-        <picture className="max-w-full max-h-full h-[90%]">
+      <article className="flex justify-between items-start gap-[108.5px] w-full max-[769px]:flex-col max-[769px]:items-center max-[769px]:gap-[74px]">
+        <picture className="max-w-full max-h-full ">
           <img
             src={cleanPath(destination.images.png)}
             alt={destination.name}
-            className="max-w-full max-h-full"
+            className="max-w-full max-h-full max-[769px]:max-w-[300px] max-[769px]:max-h-[300px]"
           />
         </picture>
-        <section className="flex flex-col gap-[40px]">
+        <section className="flex flex-col gap-[40px] max-[769px]:items-center max-[769px]:gap-[24px]">
           <nav>
             <ol className="flex gap-8 font-Barlow tracking-[2px] text-base text-Blue-300 relative">
               {data.destinations.map((dest, i) => (
@@ -64,12 +64,12 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
           <h2 className="font-Bellefair text-8xl uppercase">
             {destination.name}
           </h2>
-          <p className="text-Blue-300 font-Barlow text-lg max-w-[500px]">
+          <p className="text-Blue-300 font-Barlow text-lg max-w-[500px] max-[769px]:max-w-[514px] max-[769px]:text-center max-[769px]:text-[16px] max-[769px]:tracking-0 max-[769px]:leading-[180%]">
             {destination.description}
           </p>
-          <hr className="border-white/25" />
-          <div className="flex justify-between">
-            <div className="flex flex-col">
+          <hr className="border-white/25 w-full" />
+          <div className="flex justify-between w-full max-[769px]:grid max-[769px]:grid-flow-col max-[769px]:grid-cols-2">
+            <div className="flex flex-col max-[769px]:items-center">
               <h3 className="font-Barlow text-Blue-300 text-sm tracking-[2px]">
                 AVG. DISTANCE
               </h3>
@@ -77,7 +77,7 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
                 {destination.distance}
               </p>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col max-[769px]:items-center">
               <h3 className="font-Barlow text-Blue-300 text-sm tracking-[2px]">
                 EST. TRAVEL TIME
               </h3>
