@@ -24,35 +24,35 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
 
   return (
     <motion.main
-      className="flex items-center justify-center flex-col w-full px-[165px] max-h-[100vh] overflow-hidden"
+      className="flex items-center justify-center flex-col w-full px-[165px] h-full max-h-[100vh] overflow-hidden max-[769px]:px-[40px]"
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
       transition={{ duration: pageTransitions.transition }}
     >
-      <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh]">
+      <h1 className="font-Barlow text-[28px] tracking-[4px] self-start mt-[4vh] mb-[6vh] max-[769px]:text-[24px] max-[769px]:tracking-0">
         <b className="tracking-[4.72px] text-white/25">02</b> MEET YOUR CREW
       </h1>
-      <section className="flex justify-between w-full">
+      <section className="flex justify-between w-full max-[769px]:flex-col max-[769px]:items-center text-center h-full">
         <div className="flex flex-col max-w-[539px]">
           <div className="my-auto">
-            <h2 className="flex flex-col uppercase font-Bellefair text-[56px] gap-0">
-              <span className="text-[hsla(0,0%,100%,0.5042)] text-[32px]">
+            <h2 className="flex flex-col uppercase font-Bellefair text-[56px] gap-0 max-[769px]:text-[40px] max-[769px]:mb-[24px]">
+              <span className="text-[hsla(0,0%,100%,0.5042)] text-[32px] max-[769px]:text-[24px]">
                 {crew.role}
               </span>
               {crew.name}
             </h2>
-            <p className="font-Barlow text-[18px] leading-[1.8em] text-Blue-300 ">
+            <p className="font-Barlow text-[18px] leading-[1.8em] text-Blue-300 max-[769px]:text-[16px]">
               {crew.bio}
             </p>
           </div>
-          <nav className="mt-auto">
-            <ol className="flex gap-10">
+          <nav className="mt-auto flex max-[769px]:justify-center max-[769px]:mt-[48px]">
+            <ol className="flex gap-10 max-[769px]:gap-4">
               {data.crew.map((member, i) => (
                 <li key={member.name}>
                   <Link
                     to={`/crew/${member.role}`}
-                    className={`block size-[15px] ${
+                    className={`block size-[15px] max-[769px]:size-[10px] ${
                       indicatorStatus[i]
                         ? "bg-[rgba(255,255,255,1)]"
                         : "bg-[rgba(255,255,255,0.1744)]"
@@ -63,7 +63,7 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
             </ol>
           </nav>
         </div>
-        <picture className="max-w-full max-h-[60vh] h-[100%] relative">
+        <picture className="max-w-full max-h-[60vh] h-[100%] relative max-[769px]:max-h-[50vh] mt-auto ">
           <div className="absolute block w-full h-[25%] bottom-0 bg-gradient-to-t from-Blue-900 from-10%"></div>
           <img
             src={cleanPath(crew.images.png)}
