@@ -98,7 +98,7 @@ function App() {
       transition={{ duration: 0 }}
     >
       <div
-        className="absolute inset-0 size-full bg-center bg-cover -z-10 "
+        className="absolute block top-0 right-0 w-full h-full bg-center bg-cover -z-10 max-[769px]:rotate-90 max-[769px]:w-[100vh]"
         style={{
           backgroundImage: `url(${currentBg})`,
           backgroundSize: "cover",
