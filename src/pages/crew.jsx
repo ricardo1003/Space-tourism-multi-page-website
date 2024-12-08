@@ -63,8 +63,8 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
             </ol>
           </nav>
         </div>
-        <picture className="max-w-full max-h-[60vh] h-[100%] relative max-[769px]:max-h-[50vh] mt-auto ">
-          <div className="absolute block w-full h-[25%] bottom-0 bg-gradient-to-t from-Blue-900 from-10%"></div>
+        <picture className="max-w-full max-h-[60vh] h-[100%] relative max-[769px]:max-h-[50vh] mt-auto z-10">
+          <div className="absolute block w-full h-[25%] bottom-0 bg-gradient-to-t from-Blue-900 from-10% z-10"></div>
           <img
             src={cleanPath(crew.images.png)}
             alt="Douglas"

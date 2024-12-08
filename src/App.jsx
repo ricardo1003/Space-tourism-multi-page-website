@@ -89,7 +89,7 @@ function App() {
 
   return (
     <motion.body
-      className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] `}
+      className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] relative overflow-x-hidden`}
       style={{ backgroundImage: currentBg }}
       key={currentBg}
       initial={{ opacity: 1 }}
@@ -105,7 +105,6 @@ function App() {
           backgroundPosition: "center",
         }}
       >
-        {currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? console.log(true) : ""}
         <motion.div
           key={nextBg}
           initial={{ opacity: 0 }}
