@@ -75,7 +75,7 @@ function App() {
     setTimeout(() => {
       navigate(path);
       setIsExiting(false);
-    }, 1000);
+    }, 500);
   };
 
   const cleanPath = (path) => path.replace(/^\./, "");
@@ -84,7 +84,7 @@ function App() {
     initial: 0,
     animate: 1,
     exit: 0,
-    transition: 1,
+    transition: 0.5,
   };
 
   return (
@@ -98,20 +98,21 @@ function App() {
       transition={{ duration: 0 }}
     >
       <div
-        className={`absolute block top-0 right-0 w-full h-full bg-center bg-cover -z-10 ${currentBg && nextBg === backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-0 max-[769px]:w-[100vh]" : ""}`}
+        className={`absolute block top-0 right-0 w-full h-full bg-center bg-cover -z-10 ${currentBg && nextBg === backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-[0] max-[769px]:w-[100vh]" : ""}`}
         style={{
           backgroundImage: `url(${currentBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
+        {currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? console.log(true) : ""}
         <motion.div
           key={nextBg}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className={`${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-90 " : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:-rotate-90 " : ""}`}
+          className={`${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-90" : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:-rotate-90 " : ""}`}
           style={{
             backgroundImage: `url(${nextBg})`,
             backgroundSize: "cover",
