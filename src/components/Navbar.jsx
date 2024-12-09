@@ -26,11 +26,11 @@ export default function Navbar({
     toggleIndicator(newIndicatorStatus);
   }, [location.pathname, data.destinations]);
 
-  const [isClicked, setIsClicked] = useState(false)
+  const [isClicked, setIsClicked] = useState(false);
 
-  const showNavBar = ()=>{
-    isClicked ? setIsClicked(false) : setIsClicked(true)
-  }
+  const showNavBar = () => {
+    isClicked ? setIsClicked(false) : setIsClicked(true);
+  };
 
   return (
     <header className="min-h-[96px] flex items-center justify-between mt-[40px] max-[769px]:mt-0">
@@ -43,15 +43,29 @@ export default function Navbar({
         <div className="absolute bg-[#979797] block z-10 h-[1px] w-[115%]" />
       </div>
       <button
-        className="hidden max-[693px]:block w-6 absolute right-6 z-10"
+        className="hidden max-[693px]:block w-6 absolute right-6 z-20"
         onClick={() => {
-          showNavBar()
+          showNavBar();
         }}
       >
-        <img src="/assets/shared/icon-hamburger.svg" alt="openNav" className={isClicked ? "hidden" : "block"}/>
-        <img src="/assets/shared/icon-close.svg" alt="closeNav" className={isClicked ? "block" : "hidden"}/>
+        <img
+          src="/assets/shared/icon-hamburger.svg"
+          alt="openNav"
+          className={isClicked ? "hidden" : "block"}
+        />
+        <img
+          src="/assets/shared/icon-close.svg"
+          alt="closeNav"
+          className={isClicked ? "block" : "hidden"}
+        />
       </button>
-      <nav className={`bg-white/5 backdrop-blur h-full flex justify-end items-center px-16 font-Barlow tracking-[2px] z-1 relative max-w-[745.55px] w-full max-[693px]:max-w-[254px] max-[693px]:h-[100vh] max-[693px]:absolute max-[693px]:z-20 max-[693px]:right-0 max-[693px]:top-0 max-[693px]:pt-[133px] max-[693px]:px-0 max-[693px]:pl-8 max-[693px]:items-start max-[693px]:backdrop-blur-2xl max-[693px]:bg-black/15 transition-transform ${isClicked ? "max-[693px]:translate-x-0" : "max-[693px]:translate-x-[100%]"}`}>
+      <nav
+        className={`bg-white/5 backdrop-blur h-full flex justify-end items-center px-16 font-Barlow tracking-[2px] z-1 relative max-w-[745.55px] w-full max-[693px]:max-w-[254px] max-[693px]:h-[100vh] max-[693px]:absolute max-[693px]:z-[15] max-[693px]:right-0 max-[693px]:top-0 max-[693px]:pt-[133px] max-[693px]:px-0 max-[693px]:pl-8 max-[693px]:items-start max-[693px]:backdrop-blur-2xl max-[693px]:bg-black/15 transition-transform ${
+          isClicked
+            ? "max-[693px]:translate-x-0"
+            : "max-[693px]:translate-x-[100%]"
+        }`}
+      >
         <ol className="flex flex-row justify-between max-w-[522.55px] gap-[20px] w-full h-full items-center max-[693px]:flex-col max-[693px]:h-auto">
           {destinations.map((dest, i) => (
             <li
@@ -62,6 +76,7 @@ export default function Navbar({
                 onClick={() => {
                   handleNavigation(dest);
                   handleBackgroundChange(backgrounds[i]);
+                  showNavBar();
                 }}
                 className={`flex flex-row relative h-full items-center gap-3 ${
                   indicatorStatus[i] ? "before:block" : "before:hidden"
