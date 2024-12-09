@@ -89,8 +89,8 @@ function App() {
 
   return (
     <motion.body
-      className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] relative overflow-hidden`}
-      style={{ backgroundImage: currentBg }}
+      className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] relative overflow-x-hidden`}
+      style={{ backgroundImage: `url(${currentBg})` }}
       key={currentBg}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
@@ -98,7 +98,7 @@ function App() {
       transition={{ duration: 0 }}
     >
       <div
-        className={`absolute block top-0 right-0 w-full h-full bg-center bg-cover -z-10 ${currentBg && nextBg === backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-[0] max-[769px]:w-[100vh]" : ""}`}
+        className={`fixed block top-0 right-0 w-full h-full bg-center bg-cover -z-10 ${currentBg && nextBg === backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg === backgrounds[0] && nextBg !== backgrounds[0] ? "max-[769px]:rotate-90 max-[769px]:w-[100vh]" : ""} ${currentBg !== backgrounds[0] && nextBg === backgrounds[0] ? "max-[769px]:rotate-[0] max-[769px]:w-[100vh]" : ""}`}
         style={{
           backgroundImage: `url(${currentBg})`,
           backgroundSize: "cover",

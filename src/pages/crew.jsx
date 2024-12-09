@@ -24,7 +24,7 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
 
   return (
     <motion.main
-      className="flex items-center justify-center flex-col w-full px-[165px] h-full max-h-[100vh] overflow-hidden max-[769px]:px-[40px]"
+      className="flex items-center justify-center flex-col w-full px-[165px] h-full max-h-[100vh] overflow-x-hidden max-[769px]:px-[40px]"
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
