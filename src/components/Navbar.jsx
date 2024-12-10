@@ -35,7 +35,7 @@ export default function Navbar({
   return (
     <header className="min-h-[96px] flex items-center justify-between mt-[40px] max-[769px]:mt-0">
       <img
-        src="/assets/shared/logo.svg"
+        src="./assets/shared/logo.svg"
         alt="logo"
         className="w-[48px] h-[48px] mx-16 max-[769px]:mx-[40px]"
       />
@@ -49,12 +49,12 @@ export default function Navbar({
         }}
       >
         <img
-          src="/assets/shared/icon-hamburger.svg"
+          src="./assets/shared/icon-hamburger.svg"
           alt="openNav"
           className={isClicked ? "hidden" : "block"}
         />
         <img
-          src="/assets/shared/icon-close.svg"
+          src="./assets/shared/icon-close.svg"
           alt="closeNav"
           className={isClicked ? "block" : "hidden"}
         />

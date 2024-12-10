@@ -23,7 +23,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const [currentBg, setCurrentBg] = useState(
-    "/assets/home/background-home-desktop.jpg"
+    "./assets/home/background-home-desktop.jpg"
   );
   const [nextBg, setNextBg] = useState("");
   const [isExiting, setIsExiting] = useState(false);
@@ -39,10 +39,10 @@ function App() {
   ]);
 
   const backgrounds = [
-    "/assets/home/background-home-desktop.jpg",
-    "/assets/destination/background-destination-desktop.jpg",
-    "/assets/crew/background-crew-desktop.jpg",
-    "/assets/technology/background-technology-desktop.jpg",
+    "./assets/home/background-home-desktop.jpg",
+    "./assets/destination/background-destination-desktop.jpg",
+    "./assets/crew/background-crew-desktop.jpg",
+    "./assets/technology/background-technology-desktop.jpg",
   ];
   useEffect(() => {
     const path = location.pathname;
