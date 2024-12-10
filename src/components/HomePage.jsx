@@ -14,7 +14,7 @@ export default function HomePage({
   const navigate = useNavigate();
   return (
     <motion.main
-      className="h-full flex justify-between mx-[165px] mt-auto mb-[128px] max-[769px]:flex-col max-[769px]:items-center max-[769px]:gap-[66px] max-[458px]:m-6 max-[458px]:gap-2"
+      className="h-full flex justify-between items-end mx-[165px] mt-auto mb-[128px] max-[769px]:flex-col max-[769px]:items-center max-[769px]:gap-[66px] max-[458px]:m-6 max-[458px]:gap-2"
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}

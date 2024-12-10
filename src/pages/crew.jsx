@@ -24,7 +24,7 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
 
   return (
     <motion.main
-      className="flex items-center justify-center flex-col w-full px-[165px] h-full max-h-[100vh] overflow-x-hidden max-[769px]:px-[40px]"
+      className="flex items-center justify-center flex-col w-full px-[165px] pb-[48px] h-full max-h-[100vh] overflow-x-hidden max-[769px]:px-[40px] max-[769px]:pb-0"
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}
@@ -46,7 +46,7 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
               {crew.bio}
             </p>
           </div>
-          <nav className="mt-auto flex max-[769px]:justify-center max-[769px]:mt-[48px]">
+          <nav className="mt-auto flex mb-[48px] max-[769px]:justify-center max-[769px]:mt-[48px] ">
             <ol className="flex gap-10 max-[769px]:gap-4">
               {data.crew.map((member, i) => (
                 <li key={member.name}>

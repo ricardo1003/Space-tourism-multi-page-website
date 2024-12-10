@@ -24,7 +24,7 @@ export default function DestinationLayout({ destination, cleanPath, pageTransiti
   }, [location.pathname, data.destinations]);
   return (
     <motion.main
-      className="flex items-center justify-center flex-col w-full px-[165px] max-[769px]:px-[40px] max-[769px]:pb-[40px] max-h-full"
+      className="flex items-center justify-center flex-col w-full px-[165px] max-[769px]:px-[40px] max-[769px]:pb-[40px] "
       initial={{ opacity: pageTransitions.initial }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       exit={{ opacity: pageTransitions.exit }}

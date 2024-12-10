@@ -90,7 +90,6 @@ function App() {
   return (
     <motion.body
       className={`w-[100vw] h-[100vh] bg-center bg-cover text-white box-border flex flex-col max-h-[100vh] relative overflow-x-hidden`}
-      style={{ backgroundImage: `url(${currentBg})` }}
       key={currentBg}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
