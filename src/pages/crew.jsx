@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function CrewCommander({ crew, cleanPath, pageTransitions, isExiting }) {
+export default function CrewCommander({ crew, pageTransitions, isExiting }) {
   const location = useLocation();
 
   const [indicatorStatus, toggleIndicator] = useState([
@@ -66,7 +66,7 @@ export default function CrewCommander({ crew, cleanPath, pageTransitions, isExit
         <picture className="flex items-end max-w-full max-h-[60vh] h-[100%] relative max-[769px]:max-h-[50vh] mt-auto z-10 max-[458px]:mb-2">
           <div className="absolute block w-full h-[25%] bottom-0 bg-gradient-to-t from-Blue-900 from-10% z-10"></div>
           <img
-            src={cleanPath(crew.images.png)}
+            src={crew.images.png}
             alt="Douglas"
             className="max-w-full max-h-full block"
           />

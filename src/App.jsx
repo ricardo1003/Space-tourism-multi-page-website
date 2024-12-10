@@ -78,8 +78,6 @@ function App() {
     }, 500);
   };
 
-  const cleanPath = (path) => path.replace(/^\./, "");
-
   const pageTransitions = {
     initial: 0,
     animate: 1,
@@ -151,7 +149,6 @@ function App() {
                 element={
                   <Destination
                     destination={destination}
-                    cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
                     isExiting={isExiting}
                     handleBackgroundChange={handleBackgroundChange}
@@ -170,7 +167,6 @@ function App() {
                 element={
                   <Crew
                     crew={crew}
-                    cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
                     isExiting={isExiting}
                     handleBackgroundChange={handleBackgroundChange}
@@ -189,7 +185,6 @@ function App() {
                 element={
                   <Technology
                     tech={tech}
-                    cleanPath={cleanPath}
                     pageTransitions={pageTransitions}
                     isExiting={isExiting}
                     handleBackgroundChange={handleBackgroundChange}

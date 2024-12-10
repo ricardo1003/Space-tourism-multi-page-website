@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function TechnologyVehicle({ tech, cleanPath, pageTransitions, isExiting }) {
+export default function TechnologyVehicle({ tech, pageTransitions, isExiting }) {
   const location = useLocation();
 
   const [indicatorStatus, toggleIndicator] = useState([true, false, false]);
@@ -62,7 +62,7 @@ export default function TechnologyVehicle({ tech, cleanPath, pageTransitions, is
           </div>
         </div>
         <picture className="flex items-center justify-center max-[769px]:w-full max-[769px]:overflow-y-hidden max-[769px]:max-h-[37vh] max-[769px]:h-full max-[769px]:mb-8 max-[458px]:max-h-[30vh] relative">
-          <img src={cleanPath(tech.images.portrait)} alt={tech.name} className="max-[769px]:w-100vw max-[458px]:w-[100vw] max-[458px]:relative z-[5]"/>
+          <img src={tech.images.portrait} alt={tech.name} className="max-[769px]:w-100vw max-[458px]:w-[100vw] max-[458px]:relative z-[5]"/>
         </picture>
       </section>
     </motion.main>
