@@ -37,7 +37,7 @@ export default function DestinationLayout({ destination, pageTransitions, isExit
       <article className="flex justify-between items-start gap-[108.5px] w-full max-[769px]:flex-col max-[769px]:items-center max-[769px]:gap-[74px] ">
         <picture className="max-w-full max-h-full ">
           <img
-            src={destination.images.png}
+            src={`.${destination.images.png}`}
             alt={destination.name}
             className="max-w-full max-h-full max-[769px]:max-w-[300px] max-[769px]:max-h-[300px] max-[458px]:max-w-[150px]"
           />
